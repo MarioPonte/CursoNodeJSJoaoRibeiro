@@ -10,15 +10,20 @@ const server = http.createServer((req,res) => {
     let htmlFile = "";
     switch (req.url) {
         case "/":
-            htmlFile = "./aula20/views/index.html";
+            htmlFile = "./aula21/views/index.html";
             res.statusCode = 200;
             break;
         case "/about":
-            htmlFile = "./aula20/views/about.html";
+            htmlFile = "./aula21/views/about.html";
             res.statusCode = 200;
             break;
+        case "/aboutus":
+            res.setHeader("Location","/about");
+            res.statusCode = 301;
+            res.end();
+            break;
         default:
-            htmlFile = "./aula20/views/error404.html";
+            htmlFile = "./aula21/views/error404.html";
             res.statusCode = 404;
             break;
     }
