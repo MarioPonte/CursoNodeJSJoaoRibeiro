@@ -7,9 +7,21 @@ app.listen(3000)
 
 app.get("/", (req, res) => {
     //res.send("<h1>Teste</h1>")
-    res.sendFile("./views/home.html", { root: __dirname })
+    res.status(200).sendFile("./views/home.html", { root: __dirname })
+})
+
+app.get("/services", (req, res) => {
+    res.status(200).sendFile("./views/services.html", { root: __dirname })
 })
 
 app.get("/sobre", (req, res) => {
-    res.sendFile("./views/about.html", { root: __dirname })
+    res.status(200).sendFile("./views/about.html", { root: __dirname })
+})
+
+app.get("/acerca", (req, res) => {
+    res.status(302).redirect("/sobre")
+})
+
+app.use((req, res) => {
+    res.status(404).sendFile("./views/pageNotFound.html", { root: __dirname })
 })
