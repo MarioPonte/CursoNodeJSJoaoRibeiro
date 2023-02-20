@@ -8,27 +8,17 @@ app.set('view engine', 'ejs')
 app.listen(3000)
 
 app.get("/", (req, res) => {
-    //res.send("<h1>Teste</h1>")
-    res.status(200).sendFile("./views/home.html", { root: __dirname })
+    res.render('home', { title:"Home" })
 })
 
 app.get("/services", (req, res) => {
-    res.status(200).sendFile("./views/services.html", { root: __dirname })
+    res.render('services', { title:"Services" })
 })
 
-app.get("/sobre", (req, res) => {
-    res.status(200).sendFile("./views/about.html", { root: __dirname })
-})
-
-app.get("/acerca", (req, res) => {
-    res.status(302).redirect("/sobre")
-})
-
-// ejs
-app.get("/teste-ejs", (req, res) => {
-    res.render('inicio')
+app.get("/about", (req, res) => {
+    res.render('about', { title:"About" })
 })
 
 app.use((req, res) => {
-    res.status(404).sendFile("./views/pageNotFound.html", { root: __dirname })
+    res.status(404).render('pageNotFound', { title:"Error" })
 })
