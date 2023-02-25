@@ -7,6 +7,14 @@ app.set('view engine', 'ejs')
 
 app.listen(3000)
 
+app.use((req, res, next) => {
+    console.log("Novo pedido:");
+    console.log("Host: " + req.hostname);
+    console.log("Path: " + req.path);
+    console.log("Method: " + req.method);
+    next();
+})
+
 app.get("/", (req, res) => {
     res.render('home', { title:"Home", subtitle:"My home" })
 })
